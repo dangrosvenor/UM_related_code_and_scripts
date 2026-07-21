@@ -114,10 +114,12 @@ echo 'Files will be ouput to: ' $savedir/$run/atomic_output/$stash/$stream/
 
 #moo select -Cf /tmp/fllist.$$  moose:/devfc/$run/field.pp $savedir/$run/atomic_output/${fn_out}.pp
 #moo select -f atomic_query.qry moose:/$mass_dir/$run/$stream $savedir/$run/atomic_output/$stash/$stream/
-moo select -f ${qry_file} moose:/$mass_dir/$run/$stream $savedir/$run/atomic_output/$stash/$stream/
+#moo select -f ${qry_file} moose:/$mass_dir/$run/$stream $savedir/$run/atomic_output/$stash/$stream/
+moo select -I ${qry_file} moose:/$mass_dir/$run/$stream $savedir/$run/atomic_output/$stash/$stream/
 
 #Dan - the -C option makes it write everything to a single file.
 #    - the -f option forces an overwrite of the output file if it already exists
+#    - the -I option only retrieves what is missing.
 
 #done #N.B. - to get all of the data (e.g., monthly .pm files for the hygroscopicity case) don't need to specify the pp_file and don't need to loop.
 
