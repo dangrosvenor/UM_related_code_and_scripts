@@ -53,12 +53,17 @@ def ukca_aerosol_totvol(air_density,nuc_number,aitken_number,accum_number,coarse
 
 def ucka_aerosol_radius(mode_volume,mode_number,mode_sigma):
 
-	#mode_volume = total volume of aerosol in the mode : m3
-	#mode_number = total number concentration of the mode : m^{-3}  (# per m3)
-	#mode_sigma = width of the lognormal aerosol distribution : m
+	#This calculates the median radius of the specified lognormal distribution in m (mode_median_radius)
+	#Outputs: mode_median_radius (m)
+	#Inputs: 
+		#mode_volume = total volume of aerosol in the mode : m3
+		#mode_number = total number concentration of the mode : m^{-3}  (# per m3)
+		#mode_sigma = width of the lognormal aerosol distribution : m
+	
 
 	mode_median_radius = 0.5 * ( (6*mode_volume/mode_number) / (np.pi*np.exp(4.5*(np.log(mode_sigma))**2)) )**(1./3.)
 	#One derivation of the above is from the Don Grainger PDF on aerosol distrbiutions (Eqn. 58) where he calculates the total volume of the lognormal size distribution as a function of total number and the median radius.
+	#Note, that the median radius is different to the mean radius. Can calculate the mean radius using: mode_median_radius*exp(0.5*(np.log(mode_sigma))**2); Eqn. 54 of Grainger document.
 	
 	return (mode_median_radius)
 
